@@ -68,6 +68,11 @@ a {
     --bg-hover: #0f4c1e;
 }
 
+.hoyolab {
+    --bg-normal: #556de5;
+    --bg-hover: #1b1d84;
+}
+
 @-webkit-keyframes fadeIn {
     from {opacity: 0;} 
     to {opacity: 1;}
