@@ -68,9 +68,14 @@ a {
     --bg-hover: #0f4c1e;
 }
 
+.youtube {
+    --bf-normal: #af1919;
+    --bg-hover: #7c1b1b;
+}
+
 .hoyolab {
-    --bg-normal: #233BB9;
-    --bg-hover: #1b1d84;
+    --bg-normal: #233bb9;
+    --bg-hover: #14215f;
 }
 
 @-webkit-keyframes fadeIn {
