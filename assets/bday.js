@@ -1,24 +1,34 @@
-// Function to get the AEST date (ignoring local timezone issues)
+// Function to get the current date in AEST (adjusted for timezone)
 function getAESTDate() {
     let now = new Date();
-    // Add 10 hours (600 minutes) to convert to AEST
-    let offset = now.getTimezoneOffset() + 600; 
+    let offset = now.getTimezoneOffset() + 600; // Add 600 minutes (10 hours) for AEST
     let aestTime = new Date(now.getTime() + offset * 60 * 1000);
-    return new Date(aestTime.getFullYear(), aestTime.getMonth(), aestTime.getDate()); // Strip time
+    return new Date(aestTime.getFullYear(), aestTime.getMonth(), aestTime.getDate()); // Return date only
 }
 
-// Set the birthday date explicitly in AEST
-var currentYear = getAESTDate().getFullYear();
-var birthdayThisYear = new Date(currentYear, 11, 8); // December 8 (Month is zero-indexed)
+// Get today's date in AEST
+let todayAEST = getAESTDate();
+console.log("Today in AEST:", todayAEST);
 
-// Check if today's AEST date is after this year's birthday
-if (getAESTDate() > birthdayThisYear) {
+// Set the birthday date explicitly in AEST
+let currentYear = todayAEST.getFullYear();
+let birthdayThisYear = new Date(currentYear, 11, 8); // December 8 (Month is zero-indexed)
+console.log("Birthday this year:", birthdayThisYear);
+
+// Check if today's date is after the birthday (in AEST)
+if (todayAEST > birthdayThisYear) {
+    console.log("Today's date is AFTER the birthday. Incrementing year...");
     currentYear += 1;
 }
 
-var currentAge = currentYear - 2005;
+// Recalculate birthday date and current age
+let birthdayNextYear = new Date(currentYear, 11, 8);
+let currentAge = currentYear - 2005;
+console.log("Adjusted birthday for comparison:", birthdayNextYear);
+console.log("Current Age:", currentAge);
 
 // Determine suffix for age
+let ageSuffix, ageSuffix2;
 if (currentAge % 10 === 1 && currentAge % 100 !== 11) {
     ageSuffix = "st";
     ageSuffix2 = "ST";
@@ -33,13 +43,17 @@ if (currentAge % 10 === 1 && currentAge % 100 !== 11) {
     ageSuffix2 = "TH";
 }
 
-var countDownDate = new Date(currentYear, 11, 8).getTime(); // December 8 AEST
-var now = getAESTDate().getTime();
-var distance = countDownDate - now;
-var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+// Calculate remaining days
+let countDownDate = birthdayNextYear.getTime();
+let now = todayAEST.getTime();
+let distance = countDownDate - now;
+let days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
+console.log("Distance in days:", days);
+
+// Update DOM based on the remaining days
 if (days >= 30) {
-    var months = Math.round(days / 30);
+    let months = Math.round(days / 30);
     if (months === 1) {
         document.getElementById("days").innerHTML = months + " month left until my " + currentAge + ageSuffix + " birthday. :)";
     } else {
