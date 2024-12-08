@@ -1,70 +1,46 @@
-// Function to get the current date in AEST (adjusted for timezone)
-function getAESTDate() {
-    let now = new Date();
-    let offset = now.getTimezoneOffset() + 600; // Add 600 minutes (10 hours) for AEST
-    let aestTime = new Date(now.getTime() + offset * 60 * 1000);
-    return new Date(aestTime.getFullYear(), aestTime.getMonth(), aestTime.getDate()); // Return date only
-}
+<!DOCTYPE html>
+<html>
 
-// Get today's date in AEST
-let todayAEST = getAESTDate();
-console.log("Today in AEST:", todayAEST);
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-// Set the birthday date explicitly in AEST
-let currentYear = todayAEST.getFullYear();
-let birthdayThisYear = new Date(currentYear, 11, 8); // December 8 (Month is zero-indexed)
-console.log("Birthday this year:", birthdayThisYear);
+        <title>Pigeon :3</title>
 
-// Check if today's date is after the birthday (in AEST)
-if (todayAEST > birthdayThisYear) {
-    console.log("Today's date is AFTER the birthday. Incrementing year...");
-    currentYear += 1;
-}
+        <link rel="stylesheet" href="assets/style.css">
 
-// Recalculate birthday date and current age
-let birthdayNextYear = new Date(currentYear, 11, 8);
-let currentAge = currentYear - 2005;
-console.log("Adjusted birthday for comparison:", birthdayNextYear);
-console.log("Current Age:", currentAge);
+        <link rel="icon" type="image/x-icon" href="assets/images/pfp.webp">
 
-// Determine suffix for age
-let ageSuffix, ageSuffix2;
-if (currentAge % 10 === 1 && currentAge % 100 !== 11) {
-    ageSuffix = "st";
-    ageSuffix2 = "ST";
-} else if (currentAge % 10 === 2 && currentAge % 100 !== 12) {
-    ageSuffix = "nd";
-    ageSuffix2 = "ND";
-} else if (currentAge % 10 === 3 && currentAge % 100 !== 13) {
-    ageSuffix = "rd";
-    ageSuffix2 = "RD";
-} else {
-    ageSuffix = "th";
-    ageSuffix2 = "TH";
-}
+        <meta content="Pigeon's links" property="og:title" />
 
-// Calculate remaining days
-let countDownDate = birthdayNextYear.getTime();
-let now = todayAEST.getTime();
-let distance = countDownDate - now;
-let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        <meta content="https://pigeon.github.io/" property="og:url" />
 
-console.log("Distance in days:", days);
+        <meta content="assets/images/pfp.webp" property="og:image" />
+    </head>
 
-// Update DOM based on the remaining days
-if (days >= 30) {
-    let months = Math.round(days / 30);
-    if (months === 1) {
-        document.getElementById("days").innerHTML = months + " month left until my " + currentAge + ageSuffix + " birthday. :)";
-    } else {
-        document.getElementById("days").innerHTML = months + " months left until my " + currentAge + ageSuffix + " birthday. :)";
-    }
-} else if (days === 0) {
-    document.getElementById("days").innerHTML = "FUCK YEAH! IT'S MY " + currentAge + ageSuffix2 + " BIRTHDAY!!";
-} else if (days === -1) {
-    document.getElementById("days").innerHTML = "You missed it... My " + currentAge + ageSuffix + " birthday was yesterday.";
-} else if (days <= -2) {
-    document.getElementById("days").innerHTML = "Error Calculating Days Left Until My " + currentAge + ageSuffix + " Birthday??";
-} else {
-    document.getElementById("days").innerHTML = (days + 1) + " days left until my " + currentAge + ageSuffix + " birthday. :)";
-}
+    <body>
+        <div style="padding-top: 15px"><img class="rounding" style="display: block; margin-left: auto; margin-right: auto" src="assets/images/pfp.webp" alt="Profile Picture" width="250" height="250"></div>
+
+        <div style="margin-top: 0px" id="name_div"><text class="text" style="font-size: 50px">Pigeon</text></div>
+
+        <p style="margin-top: -15px"><text id="days" class="text" style="font-size: 15px" title="Date Of Birth: December 8th"/></p>
+
+        <p style="margin-top: -15px"><text class="text" style="font-size: 15px" title="Transgender, Pronouns: She/Her, They/Them">Transgender</text></p>
+
+        <p style="margin-top: -15px"><text class="text" style="font-size: 15px" title="Taken by my adorable cute Dove darling!">Taken :3</text></p>
+
+        <p style="margin-top: -9px"><a href="https://discordapp.com/users/1036616200211411034"><img src="https://discord.c99.nl/widget/theme-3/1036616200211411034.png" style="border-radius: 15px; box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);"></a></p>
+
+        <div class="list" style="margin-top: -15px">
+            <a href="https://anilist.co/user/PigeonMan05/animelist" target="_blank"><button class="anilist button"><img style="height: 0.8em" src="assets/images/anilist-logo.webp"></img> AniList</button></a>
+            <a href="https://myanimelist.net/profile/PigeonMan05" target="_blank"><button class="myanimelist button"><img style="height: 0.8em" src="assets/images/mal-logo.webp"></img> MAL</button></a>
+            <a href="https://steamcommunity.com/profiles/76561199041248418/" target="_blank"><button class="steam button"><img style="height: 0.8em" src="assets/images/steam-logo.webp"></img> Steam</button></a>
+            <a href="https://github.com/LittleKittyBoy" target="_blank"><button class="github button"><img style="height: 0.8em" src="assets/images/github-logo.webp"></img> GitHub</button></a>
+            <a href="https://open.spotify.com/user/mbi88r9h13hilsulxgeug1gd9?si=2908dc18d2a24508" target="_blank"><button class="spotify button"><img style="height: 0.8em" src="assets/images/spotify-logo.webp"></img> Spotify</button></a>
+            <a href="https://www.youtube.com/channel/UCk05Z5mVQHVwSDHoG4Hy5Sw" target="_blank"><button class="youtube button"><img style="height: 0.8em" src="assets/images/youtube-logo.webp"></img> YouTube</button></a>
+            <a href="https://www.hoyolab.com/accountCenter/postList?id=30146338" target="_blank"><button class="hoyolab button"><img style="height: 0.8em" src="assets/images/hoyolab-logo.webp"></img> hoyolab</button></a>
+        </div>
+    </body>
+
+    <script src="assets/bday.js"></script>
+
+</html>
