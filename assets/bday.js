@@ -1,16 +1,18 @@
-// Function to convert the current time to AEST
+// Function to get the AEST date (ignoring local timezone issues)
 function getAESTDate() {
     let now = new Date();
-    let offset = now.getTimezoneOffset() + 600; // Convert UTC to AEST (600 minutes = 10 hours)
-    return new Date(now.getTime() + offset * 60 * 1000);
+    // Add 10 hours (600 minutes) to convert to AEST
+    let offset = now.getTimezoneOffset() + 600; 
+    let aestTime = new Date(now.getTime() + offset * 60 * 1000);
+    return new Date(aestTime.getFullYear(), aestTime.getMonth(), aestTime.getDate()); // Strip time
 }
 
-// Get the current year and set the birthday in AEST
+// Set the birthday date explicitly in AEST
 var currentYear = getAESTDate().getFullYear();
-var birthdayThisYear = new Date("December 8 " + currentYear + " 00:00:00 GMT+1000").getTime();
+var birthdayThisYear = new Date(currentYear, 11, 8); // December 8 (Month is zero-indexed)
 
-// Check if today's AEST date is after the birthday
-if (getAESTDate().getTime() > birthdayThisYear) {
+// Check if today's AEST date is after this year's birthday
+if (getAESTDate() > birthdayThisYear) {
     currentYear += 1;
 }
 
@@ -31,7 +33,7 @@ if (currentAge % 10 === 1 && currentAge % 100 !== 11) {
     ageSuffix2 = "TH";
 }
 
-var countDownDate = new Date("December 8 " + currentYear + " 00:00:00 GMT+1000").getTime();
+var countDownDate = new Date(currentYear, 11, 8).getTime(); // December 8 AEST
 var now = getAESTDate().getTime();
 var distance = countDownDate - now;
 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
