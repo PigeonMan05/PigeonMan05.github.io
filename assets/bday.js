@@ -21,9 +21,27 @@ if (todayAEST > birthdayThisYear) {
     currentYear += 1;
 }
 
-// Recalculate the next birthday date
-let birthdayNextYear = new Date(currentYear, 11, 8); // December 8
+// Recalculate birthday date and current age
+let birthdayNextYear = new Date(currentYear, 11, 8);
+let currentAge = currentYear - 2005;
 console.log("Adjusted birthday for comparison:", birthdayNextYear);
+console.log("Current Age:", currentAge);
+
+// Determine suffix for age
+let ageSuffix, ageSuffix2;
+if (currentAge % 10 === 1 && currentAge % 100 !== 11) {
+    ageSuffix = "st";
+    ageSuffix2 = "ST";
+} else if (currentAge % 10 === 2 && currentAge % 100 !== 12) {
+    ageSuffix = "nd";
+    ageSuffix2 = "ND";
+} else if (currentAge % 10 === 3 && currentAge % 100 !== 13) {
+    ageSuffix = "rd";
+    ageSuffix2 = "RD";
+} else {
+    ageSuffix = "th";
+    ageSuffix2 = "TH";
+}
 
 // Calculate remaining days
 let countDownDate = birthdayNextYear.getTime();
@@ -37,16 +55,16 @@ console.log("Distance in days:", days);
 if (days >= 30) {
     let months = Math.round(days / 30);
     if (months === 1) {
-        document.getElementById("days").innerHTML = months + " month left until my birthday in December. :)";
+        document.getElementById("days").innerHTML = months + " month left until my " + currentAge + ageSuffix + " birthday. :)";
     } else {
-        document.getElementById("days").innerHTML = months + " months left until my birthday in December. :)";
+        document.getElementById("days").innerHTML = months + " months left until my " + currentAge + ageSuffix + " birthday. :)";
     }
 } else if (days === 0) {
-    document.getElementById("days").innerHTML = "FUCK YEAH! IT'S MY BIRTHDAY TODAY!! 🎉";
+    document.getElementById("days").innerHTML = "FUCK YEAH! IT'S MY " + currentAge + ageSuffix2 + " BIRTHDAY!!";
 } else if (days === -1) {
-    document.getElementById("days").innerHTML = "You missed it... My birthday was yesterday.";
+    document.getElementById("days").innerHTML = "You missed it... My " + currentAge + ageSuffix + " birthday was yesterday.";
 } else if (days <= -2) {
-    document.getElementById("days").innerHTML = "Error Calculating Days Left Until My Birthday??";
+    document.getElementById("days").innerHTML = "Error Calculating Days Left Until My " + currentAge + ageSuffix + " Birthday??";
 } else {
-    document.getElementById("days").innerHTML = (days + 1) + " days left until my birthday in December. :)";
+    document.getElementById("days").innerHTML = (days + 1) + " days left until my " + currentAge + ageSuffix + " birthday. :)";
 }
